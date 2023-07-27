@@ -26,7 +26,7 @@ export const getTwodData = async () => {
   const value = dataList[4];
 
   const twod =
-    set.split('.')[1].charAt(0).toString() + value.charAt(5).toString();
+    set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
 
   const time = moment().format('HH:mm:ss');
   const date = moment().format('DD-MM-yyyy');

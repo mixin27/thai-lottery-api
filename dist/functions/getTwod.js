@@ -31,7 +31,7 @@ const getTwodData = () => __awaiter(void 0, void 0, void 0, function* () {
         .split('|');
     const set = dataList[1];
     const value = dataList[4];
-    const twod = set.split('.')[1].charAt(0).toString() + value.charAt(5).toString();
+    const twod = set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
     const time = (0, moment_1.default)().format('HH:mm:ss');
     const date = (0, moment_1.default)().format('DD-MM-yyyy');
     const dateTime = (0, moment_1.default)().toISOString();
