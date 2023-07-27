@@ -28,16 +28,13 @@ export const getTwodData = async () => {
   const twod =
     set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
 
-  const time = moment().format('HH:mm:ss');
-  const date = moment().format('DD-MM-yyyy');
-  const dateTime = moment().toISOString();
+  const jsDate = Date.now();
+  const date = moment(jsDate);
 
   return {
     set,
     value,
     twod,
-    time,
     date,
-    dateTime,
   };
 };
