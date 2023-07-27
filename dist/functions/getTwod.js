@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTwodData = void 0;
 const cheerio_1 = require("cheerio");
+const moment_1 = __importDefault(require("moment"));
 const getTwodData = () => __awaiter(void 0, void 0, void 0, function* () {
     const $ = (0, cheerio_1.load)(yield fetch('https://www.set.or.th/en/home').then((o) => o.text()));
     const res = $('div.table-market-overview.py-2 > table > tbody > tr')
@@ -28,9 +32,9 @@ const getTwodData = () => __awaiter(void 0, void 0, void 0, function* () {
     const set = dataList[1];
     const value = dataList[4];
     const twod = set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
-    const dt = new Date();
-    const date = dt.toLocaleDateString();
-    const time = dt.toLocaleTimeString();
+    const dt = (0, moment_1.default)().utc(true);
+    const date = dt.format('DD-MM-yyyy');
+    const time = dt.format('hh:mm:ss a');
     return {
         set,
         value,

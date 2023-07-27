@@ -28,9 +28,9 @@ export const getTwodData = async () => {
   const twod =
     set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
 
-  const dt = new Date();
-  const date = dt.toLocaleDateString();
-  const time = dt.toLocaleTimeString();
+  const dt = moment().utc(true);
+  const date = dt.format('DD-MM-yyyy');
+  const time = dt.format('hh:mm:ss a');
 
   return {
     set,
