@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { getList } from './functions/getList';
 import { getLotto } from './functions/getLotto';
+import { getTwodData } from './functions/getTwod';
 
 dotenv.config();
 
@@ -82,6 +83,22 @@ app.get('/api/lotto', async (req: Request, res: Response) => {
     res.status(500).json({
       status: 'crash',
       message: 'api cannot fulfill your request at this time',
+    });
+  }
+});
+
+app.get('/api/twod/live', async (req, res) => {
+  try {
+    const data = await getTwodData();
+    res.json({
+      data,
+      success: true,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: 'crash',
+      message: 'api cannot fulfill your request at this time',
+      error: e,
     });
   }
 });

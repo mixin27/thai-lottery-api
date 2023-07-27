@@ -17,6 +17,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const getList_1 = require("./functions/getList");
 const getLotto_1 = require("./functions/getLotto");
+const getTwod_1 = require("./functions/getTwod");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
@@ -87,6 +88,22 @@ app.get('/api/lotto', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).json({
             status: 'crash',
             message: 'api cannot fulfill your request at this time',
+        });
+    }
+}));
+app.get('/api/twod/live', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield (0, getTwod_1.getTwodData)();
+        res.json({
+            data,
+            success: true,
+        });
+    }
+    catch (e) {
+        res.status(500).json({
+            status: 'crash',
+            message: 'api cannot fulfill your request at this time',
+            error: e,
         });
     }
 }));
