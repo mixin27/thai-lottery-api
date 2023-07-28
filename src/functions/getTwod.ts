@@ -1,5 +1,5 @@
 import { load } from 'cheerio';
-import moment from 'moment';
+import moment, { utc } from 'moment';
 
 export const getTwodData = async () => {
   const $ = load(
@@ -27,16 +27,21 @@ export const getTwodData = async () => {
 
   const twod =
     set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
+  const utcDate = moment();
+  const date = utcDate.format('DD-MM-yyyy');
+  const time = utcDate.format('hh:mm:ss a');
 
-  const dt = moment().utc(true);
-  const date = dt.format('DD-MM-yyyy');
-  const time = dt.format('hh:mm:ss a');
+  const dt = new Date().toUTCString();
+  const dateTime = new Date(dt);
 
   return {
     set,
     value,
     twod,
-    date,
-    time,
+    utc_date: date,
+    utc_time: time,
+    local_date: dateTime.toLocaleDateString(),
+    local_time: dateTime.toLocaleTimeString(),
+    local_date_time: dateTime.toLocaleString(),
   };
 };

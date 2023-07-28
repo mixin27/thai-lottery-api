@@ -32,15 +32,20 @@ const getTwodData = () => __awaiter(void 0, void 0, void 0, function* () {
     const set = dataList[1];
     const value = dataList[4];
     const twod = set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
-    const dt = (0, moment_1.default)().utc(true);
-    const date = dt.format('DD-MM-yyyy');
-    const time = dt.format('hh:mm:ss a');
+    const utcDate = (0, moment_1.default)();
+    const date = utcDate.format('DD-MM-yyyy');
+    const time = utcDate.format('hh:mm:ss a');
+    const dt = new Date().toUTCString();
+    const dateTime = new Date(dt);
     return {
         set,
         value,
         twod,
-        date,
-        time,
+        utc_date: date,
+        utc_time: time,
+        local_date: dateTime.toLocaleDateString(),
+        local_time: dateTime.toLocaleTimeString(),
+        local_date_time: dateTime.toLocaleString(),
     };
 });
 exports.getTwodData = getTwodData;
