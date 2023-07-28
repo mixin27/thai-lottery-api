@@ -27,21 +27,17 @@ export const getTwodData = async () => {
 
   const twod =
     set.split('.')[1].charAt(1).toString() + value.charAt(5).toString();
-  const utcDate = moment();
-  const date = utcDate.format('DD-MM-yyyy');
-  const time = utcDate.format('hh:mm:ss a');
 
-  const dt = new Date().toUTCString();
-  const dateTime = new Date(dt);
+  // const utcDT = new Date().toUTCString();
+  var dt = moment();
+
+  // const date = dt.format('DD-MM-yyyy');
+  // const time = dt.format('hh:mm:ss a');
 
   return {
     set,
     value,
     twod,
-    utc_date: date,
-    utc_time: time,
-    local_date: dateTime.toLocaleDateString(),
-    local_time: dateTime.toLocaleTimeString(),
-    local_date_time: dateTime.toLocaleString(),
+    date: dt.utcOffset('+06:30').format('YYYY-MM-DD HH:mm:ss'),
   };
 };
